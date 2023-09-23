@@ -10,11 +10,12 @@ def read_txt_file(txt_file):
         lines = file.readlines()
     return [line.strip().split() for line in lines]
 
-# Step 3: Create a Graph Data Structure
+# Step 2: Create a Graph Data Structure
 G = nx.Graph()
 
-# Step 4: Add Nodes and Edges
+# Step 3: Add Nodes and Edges
 for edge in read_txt_file(file_path):
     G.add_edge(edge[0], edge[1])
 
+# Step 4: Write G into gexf file
 nx.write_gexf(G, target_path)
