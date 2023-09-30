@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 G = nx.Graph()
 
-hw_path ='/Users/anciank/Desktop/network_hw/hw1/ca-GrQc.txt' 
+hw_path ='/Users/anciank/Desktop/network_hw/hw1/HepTh.txt' 
 f = open(hw_path, 'r')
 for line in f:  #line :  3466 	937
     ids = line.split()   # ids = ['3466', '937']

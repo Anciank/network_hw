@@ -1,5 +1,5 @@
-file_path ='/Users/anciank/Desktop/network_hw/hw1/ca-GrQc.txt' 
-target_path = '/Users/anciank/Desktop/network_hw/hw1/ca-GrQc.csv'
+file_path ='/Users/anciank/Desktop/network_hw/hw1/HepTh.txt' 
+target_path = '/Users/anciank/Desktop/network_hw/hw1/HepTh.csv'
 
 with open(file_path, 'r') as f:
     row = []

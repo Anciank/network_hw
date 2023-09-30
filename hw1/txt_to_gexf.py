@@ -1,8 +1,8 @@
 import networkx as nx
 
 # Replace with the path to your TXT file
-file_path = '/Users/anciank/Desktop/network_hw/hw1/ca-GrQc.txt'  
-target_path = '/Users/anciank/Desktop/network_hw/hw1/ca-GrQc.gexf'
+file_path = '/Users/anciank/Desktop/network_hw/hw1/HepTh.txt'  
+target_path = '/Users/anciank/Desktop/network_hw/hw1/HepTh.gexf'
 
 # Step 1: Read the TXT File (Assuming a simple format: "node1 node2")
 def read_txt_file(txt_file):
