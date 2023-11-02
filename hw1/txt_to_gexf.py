@@ -1,8 +1,8 @@
 import networkx as nx
 
 # Replace with the path to your TXT file
-file_path = '/Users/anciank/Desktop/network_hw/hw1/HepTh.txt'  
-target_path = '/Users/anciank/Desktop/network_hw/hw1/HepTh.gexf'
+file_path = r'C:\Users\17311\Desktop\homework\net_homework\p2p-Gnutella04.txt'  
+target_path = r'C:\Users\17311\Desktop\homework\net_homework\p2p-Gnutella04.gexf'
 
 # Step 1: Read the TXT File (Assuming a simple format: "node1 node2")
 def read_txt_file(txt_file):
