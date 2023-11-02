@@ -5,70 +5,51 @@ import pandas as pd
 
 G = nx.Graph()
 
-hw_path =r'C:\Users\17311\Desktop\homework\net_homework\lastfm_asia_edges.txt' 
-f = open(hw_path, 'r')
-for line in f:  #line :  3466 	937
-    ids = line.split(',')   # ids = ['3466', '937']
+for line in open('hw1/HepTh.txt', 'r'):  #line :  3466 	937
+    ids = line.split()   # ids = ['3466', '937']
     G.add_edge( int(ids[0]), int(ids[1]) )
 
-#plt graph
-# pos = nx.spring_layout(G)
-# nx.draw(G, pos, with_labels=False, node_size=1, node_color='b', alpha=0.6, width=0.1, arrows=False)
-# plt.show()
+def plot_pk_k():
+    degree_sequence = sorted([d for n, d in G.degree()], reverse=True)
 
-#degree distribution
-#degree_sequence = sorted([d for n, d in G.degree()], reverse=True)
+    plt.hist(degree_sequence, bins=range(min(degree_sequence), max(degree_sequence) + 1), 
+            density=True, alpha=0.75)
+    plt.xlabel("Degree (k)")
+    plt.ylabel("Probability (p(k))")
+    plt.title("Degree Distribution")
+    plt.show()
 
-# Calculate the degree of each node
-#degrees = dict(G.degree())
+def plot_degree_distribution():
+    # Get the degrees of the nodes in the filtered graph
+    degrees = [G.degree(node) for node in G.nodes()]
 
+    # Create a histogram of the degree distribution
+    plt.figure(figsize=(8, 6))
+    plt.hist(degrees, bins=20, color='skyblue', alpha=0.7)
+    plt.xlabel('Degree')
+    plt.ylabel('Frequency')
+    plt.title('Degree Distribution of Filtered Graph')
+    plt.grid(True)
+    plt.show()
 
-# print(nx.pagerank(G))
-pagerankValues = nx.pagerank(G)
+def plot_G(filter_to):
+    filtered_G = G.subgraph([node for node in G.nodes() if G.degree(node) > filter_to])
+    pos = nx.spring_layout(filtered_G)
+    plt.figure(figsize=(10, 6))
+    nx.draw(filtered_G, pos, node_size=20,node_color='green')
+    plt.title("Filtered Graph (Degree > 15) using Fruchterman-Reingold Layout")
+    plt.show()
 
-# Get the unique values and their counts
-pageRank_values = list(pagerankValues.values())
-unique_values = list(set(pageRank_values))
-values_counts = [pageRank_values.count(d) for d in unique_values]
+def print_node_num():
+    #number of nodes
+    print('number of nodes: ', len(G.nodes))
 
-#print(pageRank_values)
+def print_edeg_num():
+    #number of edges
+    print('Number of edges: ', len(G.edges))
 
-# Create a scatter plot
-plt.scatter(unique_values, values_counts, s=10,marker='o', c='b', label='pageRank Graph')
-
-# Set labels and title
-plt.xlabel('pageRank_values')
-plt.ylabel('Count')
-plt.title('pageRank Plot')
-
-# Show the plot
-plt.show()
-
-# Show the legend
-# plt.legend()
-
-# plt.scatter()
-# plt.xlabel("Degree (k)")
-# plt.ylabel("Probability (p(k))")
-# plt.title("Degree Distribution")
-# plt.show()
-
-
-#number of nodes
-#print(len(G.nodes))
-
-#number of edges
-#print(len(G.edges))
-
-#diameter
-# connected_components = list(nx.connected_components(G))
-
-# max_diameter = 0
-
-# for component in connected_components:
-#     subgraph = G.subgraph(component)
-#     diameter = nx.diameter(subgraph)
-#     if diameter > max_diameter:
-#         max_diameter = diameter
-
-# print("Diameter of the graph:", max_diameter)
+def print_diameter():
+    #diameter
+    print("Diameter of the graph:", 
+        max([nx.diameter(G.subgraph(subGraph)) 
+            for subGraph in list(nx.connected_components(G))]))
