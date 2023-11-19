@@ -27,9 +27,15 @@ def custom_pagerank(graph, num_iterations=100, damping_factor=0.85):
 G = nx.DiGraph()
 G.add_edges_from([(1, 2), (2, 3), (3, 1), (3, 2), (4, 2)])
 
+G = nx.Graph()
+
+for line in open('hw1/HepTh.txt', 'r'):  #line :  3466 	937
+    ids = line.split()   # ids = ['3466', '937']
+    G.add_edge( int(ids[0]), int(ids[1]) )
+    
 # Calculate custom PageRank
 custom_pagerank_scores = custom_pagerank(G)
 
 # Print custom PageRank scores for each node
 for node, score in custom_pagerank_scores.items():
-    print(f"Node {node}: PageRank = {score:.4f}")
+    print(f"Node {node}: PageRank = {score:.8f}")
