@@ -46,14 +46,11 @@ def export_community_structure(G, communities, filename):
     nx.write_gexf(G, filename)
 
 if __name__ == '__main__':
-    G = nx.karate_club_graph()
-    louvin_community(G)
-    greedy_communities(G)
-    Girvan_Newman_communities(G)
-
-    n = 10000
-    p = 0.5
-    G = nx.fast_gnp_random_graph(n, p)
+    G = nx.Graph()
+    for line in open('../hw1/HepTh.txt', 'r'):  #line :  3466 	937
+        ids = line.split()   # ids = ['3466', '937']
+        G.add_edge( int(ids[0]), int(ids[1]) )
+        
     louvin_community(G)
     greedy_communities(G)
     Girvan_Newman_communities(G)
