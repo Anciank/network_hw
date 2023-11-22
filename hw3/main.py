@@ -47,7 +47,7 @@ def export_community_structure(G, communities, filename):
 
 if __name__ == '__main__':
     G = nx.Graph()
-    for line in open('../hw1/HepTh.txt', 'r'):  #line :  3466 	937
+    for line in open('./p2p-Gnutella04.txt', 'r'):  #line :  3466 	937
         ids = line.split()   # ids = ['3466', '937']
         G.add_edge( int(ids[0]), int(ids[1]) )
         
